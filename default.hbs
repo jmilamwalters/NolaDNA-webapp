@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="{{asset "favicon.ico"}}">
+
+    {{! Le Styles }}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/app.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/custom.css"}}" />
+
+    {{! Le Google Fonts API }}
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic|Raleway:300,600' rel='stylesheet' type='text/css'>
+
+    {{! Le Modernizr }}
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.1/modernizr.min.js"></script>
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+    {{! Le Fuck IE8 }}
+    <!--[if lt IE 8]>
+        <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div class="layout layout--wide">
+        <aside class="layout__aside" {{#if @blog.cover}}style="background-image: url({{@blog.cover}})"{{/if}}>
+            <div class="layout__aside__overlay">
+                <header role="banner" class="layout__header">
+                    {{#if @blog.logo}}<a class="resonance__logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{@blog.title}}" /></a>{{/if}}
+                    <h1 class="resonance__title" style="display:none;">{{@blog.title}}</h1>
+                    <p class="resonance__description" style="display:none;">{{@blog.description}}</p>
+                    {{> navigation}}
+                    <div class="resonance__subscribe">
+                        <a class="resonance__subscribe__link" href="{{@blog.url}}/rss/">
+                            <i class="icon icon--small icon--rss"></i>
+                        </a>
+                    </div>
+                </header>
+                {{> footer}}
+            </div>
+        </aside>
+        <a href="#sidebarToggle" class="menu-toggle">
+            <i class="icon icon--small icon--nav"></i>
+        </a>
+        <main class="layout__main" role="main">
+            {{{body}}}
+        </main>
+    </div>
+
+    {{! Le Google Analytics }}
+    {{> analytics}}
+
+    {{ghost_foot}}
+
+    {{! Le JavaScript }}
+    <script src="{{asset "js/index.js"}}"></script>
+</body>
+</html>
